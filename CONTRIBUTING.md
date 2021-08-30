@@ -8,7 +8,7 @@ You can contribute us by filing issues, bugs and PRs. You can also take a look a
 - Proposing new features
 - Becoming a maintainer
 
-If you want to discuss on something then feel free to present your opinions, views or any other relevant comment on [discussions](https://github.com/Rishit-dagli/Fast-Transfomer/discussions). 
+If you want to discuss on something then feel free to present your opinions, views or any other relevant comment on [discussions](https://github.com/Rishit-dagli/Fast-Transformer/discussions). 
 Please note we have a [code of conduct](CODE_OF_CONDUCT.md), please follow it in all your interactions with the project.
 
 ### Code contribution

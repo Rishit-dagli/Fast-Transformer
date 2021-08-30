@@ -48,7 +48,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Scientific/Engineering :: Mathematics",
     ],
-    url="https://github.com/Rishit-dagli/Fast-Transfomer",
+    url="https://github.com/Rishit-dagli/Fast-Transformer",
     author="Rishit Dagli",
     author_email="rishit.dagli@gmail.com",
     install_requires=[
