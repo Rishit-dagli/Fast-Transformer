@@ -10,4 +10,7 @@
 [![GitHub followers](https://img.shields.io/github/followers/Rishit-dagli?label=Follow&style=social)](https://github.com/Rishit-dagli)
 [![Twitter Follow](https://img.shields.io/twitter/follow/rishit_dagli?style=social)](https://twitter.com/intent/follow?screen_name=rishit_dagli)
 
-An implementation of Fastformer: Additive Attention Can Be All You Need in TensorFlow
+This repo implements [Fastformer: Additive Attention Can Be All You Need](https://arxiv.org/abs/2108.09084) by Wu et al. in 
+TensorFlow. **Fast Transformer** is a Transformer variant based on additive attention that can handle long sequences 
+efficiently with linear complexity. Fastformer is much more efficient than many existing Transformer models and can 
+meanwhile achieve comparable or even better long text modeling performance.
