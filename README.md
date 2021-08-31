@@ -37,6 +37,26 @@ cd fast-transformer
 pip install -e .[dev]
 ```
 
+## Usage
+
+```python
+import tensorflow as tf
+from fast_transformer import FastTransformer
+
+mask = tf.ones([1, 4096], dtype=tf.bool)
+model = FastTransformer(
+    num_tokens = 20000,
+    dim = 512,
+    depth = 2,
+    max_seq_len = 4096,
+    absolute_pos_emb = True, # Absolute positional embeddings
+    mask = mask
+)
+x = tf.experimental.numpy.random.randint(0, 20000, (1, 4096))
+
+logits = model(x) # (1, 4096, 20000)
+```
+
 ## Want to Contribute 🙋‍♂️?
 
 Awesome! If you want to contribute to this project, you're always welcome! See [Contributing Guidelines](CONTRIBUTING.md). You can also take a look at [open issues](https://github.com/Rishit-dagli/Fast-Transformer/issues) for getting more information about current or upcoming tasks.
