@@ -73,4 +73,9 @@ class FastTransformer(tf.keras.Model):
             block.fn.to_q_attn_logits = first_block.fn.to_q_attn_logits
             block.fn.to_k_attn_logits = first_block.fn.to_k_attn_logits
 
+        self.to_logits = tf.keras.Sequential([
+            tf.keras.layers.LayerNormalization(axis = -1),
+            tf.keras.layers.Dense(num_tokens, input_dim = dim)
+        ])
+
     def call(self, x, **kwargs):
