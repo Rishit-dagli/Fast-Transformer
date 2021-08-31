@@ -91,9 +91,7 @@ class FastTransformer(tf.keras.Model):
             pos_emb = self.abs_pos_emb(tf.range(n))
             x = x + rearrange(pos_emb, 'n d -> () n d')
 
-        layer_number = 0
         for current_layer in self.fast_tranformer_layers:
             x = current_layer(x) + x
-            layer_number += 1
 
         return self.to_logits(x)
