@@ -16,3 +16,21 @@ efficiently with linear complexity. Fastformer is much more efficient than many 
 meanwhile achieve comparable or even better long text modeling performance.
 
 ![Architecture](media/architecture.png)
+
+## Installation
+Run the following to install:
+
+```sh
+pip install fast-transformer
+```
+
+## Developing fast-transformer
+To install `fast-transformer`, along with tools you need to develop and test, run the following in your virtualenv:
+
+```sh
+git clone https://github.com/Rishit-dagli/Fast-Transformer.git
+# or clone your own fork
+
+cd fast-transformer
+pip install -e .[dev]
+```
