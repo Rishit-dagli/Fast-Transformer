@@ -1,5 +1,5 @@
 import tensorflow as tf
-
+from rotary_embedding_tensorflow import RotaryEmbedding
 
 class PreNorm(tf.keras.layers.Layer):
     def __init__(self, dim, fn):
@@ -42,5 +42,20 @@ class FastTransformer(tf.keras.Model):
         absolute_pos_emb = False,
         mask = None):
         super(FastTransformer, self).__init__()
+
+        self.token_emb = tf.keras.layers.Embedding(num_tokens, dim)
+        self.mask = mask
+
+        # positional embeddings
+
+        if absolute_pos_emb:
+            self.abs_pos_emb = tf.keras.layers.Embedding(max_seq_len, dim)
+        else:
+            self.abs_pos_emb = None
+
+        layer_pos_emb = None
+        if not absolute_pos_emb:
+            assert (dim_head % 4) == 0, 'dimension of the head must be divisible by 4 to use rotary embeddings'
+            layer_pos_emb = RotaryEmbedding(dim_head // 2)
 
     def call(self, x, **kwargs):
