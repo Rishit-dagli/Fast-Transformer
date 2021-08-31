@@ -63,7 +63,9 @@ class FastTransformer(tf.keras.Model):
 
         for _ in range(depth):
             attn = FastAttention(dim, dim_head = dim_head, heads = heads, pos_emb = layer_pos_emb, max_seq_len = max_seq_len, mask = self.mask)
+            ff = FeedForward(dim, mult = ff_mult)
 
             self.fast_tranformer_layers.append(PreNorm(dim, attn))
+            self.fast_tranformer_layers.append(PreNorm(dim, ff))
 
     def call(self, x, **kwargs):
