@@ -1,5 +1,6 @@
 import tensorflow as tf
 from rotary_embedding_tensorflow import RotaryEmbedding
+from .fast_attention import FastAttention
 
 class PreNorm(tf.keras.layers.Layer):
     def __init__(self, dim, fn):
@@ -57,5 +58,12 @@ class FastTransformer(tf.keras.Model):
         if not absolute_pos_emb:
             assert (dim_head % 4) == 0, 'dimension of the head must be divisible by 4 to use rotary embeddings'
             layer_pos_emb = RotaryEmbedding(dim_head // 2)
+
+        self.fast_tranformer_layers = []
+
+        for _ in range(depth):
+            attn = FastAttention(dim, dim_head = dim_head, heads = heads, pos_emb = layer_pos_emb, max_seq_len = max_seq_len, mask = self.mask)
+
+            self.fast_tranformer_layers.append(PreNorm(dim, attn))
 
     def call(self, x, **kwargs):
