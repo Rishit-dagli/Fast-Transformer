@@ -18,6 +18,13 @@ class FeedForward(tf.keras.layers.Layer):
         self.dim = dim
         self.mult = mult
 
+        self.net = tf.keras.Sequential(
+            [
+                tf.keras.layers.Dense(dim * mult, input_dim=dim),
+                tf.keras.layers.Activation(tf.nn.gelu),
+                tf.keras.layers.Dense(dim, input_dim=dim * mult),
+            ]
+        )
 
     def call(self, inputs, **kwargs):
-
+        return self.net(inputs)
