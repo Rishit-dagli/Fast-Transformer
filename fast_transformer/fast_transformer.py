@@ -28,3 +28,19 @@ class FeedForward(tf.keras.layers.Layer):
 
     def call(self, inputs, **kwargs):
         return self.net(inputs)
+
+class FastTransformer(tf.keras.Model):
+    def __init__(
+        self,
+        num_tokens,
+        dim,
+        depth,
+        max_seq_len,
+        heads = 8,
+        dim_head = 64,
+        ff_mult = 4,
+        absolute_pos_emb = False,
+        mask = None):
+        super(FastTransformer, self).__init__()
+
+    def call(self, x, **kwargs):
