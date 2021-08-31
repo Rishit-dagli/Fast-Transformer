@@ -36,23 +36,23 @@ class FeedForward(tf.keras.layers.Layer):
 
 class FastTransformer(tf.keras.Model):
     def __init__(
-            self,
-            num_tokens,
-            dim,
-            depth,
-            max_seq_len,
-            heads=8,
-            dim_head=64,
-            ff_mult=4,
-            absolute_pos_emb=False,
-            mask=None):
+        self,
+        num_tokens,
+        dim,
+        depth,
+        max_seq_len,
+        heads=8,
+        dim_head=64,
+        ff_mult=4,
+        absolute_pos_emb=False,
+        mask=None,
+    ):
         super(FastTransformer, self).__init__()
 
         self.token_emb = tf.keras.layers.Embedding(num_tokens, dim)
         self.mask = mask
 
         # positional embeddings
-
         if absolute_pos_emb:
             self.abs_pos_emb = tf.keras.layers.Embedding(max_seq_len, dim)
         else:
@@ -60,14 +60,24 @@ class FastTransformer(tf.keras.Model):
 
         layer_pos_emb = None
         if not absolute_pos_emb:
-            assert (dim_head % 4) == 0, 'dimension of the head must be divisible by 4 to use rotary embeddings'
+            assert (
+                dim_head % 4
+            ) == 0, (
+                "dimension of the head must be divisible by 4 to use rotary embeddings"
+            )
             layer_pos_emb = RotaryEmbedding(dim_head // 2)
 
         self.fast_tranformer_layers = []
 
         for _ in range(depth):
-            attn = FastAttention(dim, dim_head=dim_head, heads=heads, pos_emb=layer_pos_emb, max_seq_len=max_seq_len,
-                                 mask=self.mask)
+            attn = FastAttention(
+                dim,
+                dim_head=dim_head,
+                heads=heads,
+                pos_emb=layer_pos_emb,
+                max_seq_len=max_seq_len,
+                mask=self.mask,
+            )
             ff = FeedForward(dim, mult=ff_mult)
 
             self.fast_tranformer_layers.append(PreNorm(dim, attn))
@@ -78,10 +88,12 @@ class FastTransformer(tf.keras.Model):
             block.fn.to_q_attn_logits = first_block.fn.to_q_attn_logits
             block.fn.to_k_attn_logits = first_block.fn.to_k_attn_logits
 
-        self.to_logits = tf.keras.Sequential([
-            tf.keras.layers.LayerNormalization(axis=-1),
-            tf.keras.layers.Dense(num_tokens, input_dim=dim)
-        ])
+        self.to_logits = tf.keras.Sequential(
+            [
+                tf.keras.layers.LayerNormalization(axis=-1),
+                tf.keras.layers.Dense(num_tokens, input_dim=dim),
+            ]
+        )
 
     def call(self, x, **kwargs):
         n = x.shape[1]
@@ -89,7 +101,7 @@ class FastTransformer(tf.keras.Model):
 
         if self.abs_pos_emb is not None:
             pos_emb = self.abs_pos_emb(tf.range(n))
-            x = x + rearrange(pos_emb, 'n d -> () n d')
+            x = x + rearrange(pos_emb, "n d -> () n d")
 
         for current_layer in self.fast_tranformer_layers:
             x = current_layer(x) + x
