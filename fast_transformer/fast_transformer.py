@@ -68,4 +68,9 @@ class FastTransformer(tf.keras.Model):
             self.fast_tranformer_layers.append(PreNorm(dim, attn))
             self.fast_tranformer_layers.append(PreNorm(dim, ff))
 
+        first_block = self.fast_tranformer_layers[0]
+        for block in self.fast_tranformer_layers[1:]:
+            block.fn.to_q_attn_logits = first_block.fn.to_q_attn_logits
+            block.fn.to_k_attn_logits = first_block.fn.to_k_attn_logits
+
     def call(self, x, **kwargs):
