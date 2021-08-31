@@ -15,7 +15,7 @@ TensorFlow. **Fast Transformer** is a Transformer variant based on additive atte
 efficiently with linear complexity. Fastformer is much more efficient than many existing Transformer models and can 
 meanwhile achieve comparable or even better long text modeling performance.
 
-![Architecture](media/architecture.png)
+![](https://github.com/Rishit-dagli/Fast-Transformer/blob/main/media/architecture.png)
 
 ## Installation
 
