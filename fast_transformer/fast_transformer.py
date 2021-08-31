@@ -1,6 +1,9 @@
 import tensorflow as tf
+from einops import rearrange
 from rotary_embedding_tensorflow import RotaryEmbedding
+
 from .fast_attention import FastAttention
+
 
 class PreNorm(tf.keras.layers.Layer):
     def __init__(self, dim, fn):
@@ -30,18 +33,19 @@ class FeedForward(tf.keras.layers.Layer):
     def call(self, inputs, **kwargs):
         return self.net(inputs)
 
+
 class FastTransformer(tf.keras.Model):
     def __init__(
-        self,
-        num_tokens,
-        dim,
-        depth,
-        max_seq_len,
-        heads = 8,
-        dim_head = 64,
-        ff_mult = 4,
-        absolute_pos_emb = False,
-        mask = None):
+            self,
+            num_tokens,
+            dim,
+            depth,
+            max_seq_len,
+            heads=8,
+            dim_head=64,
+            ff_mult=4,
+            absolute_pos_emb=False,
+            mask=None):
         super(FastTransformer, self).__init__()
 
         self.token_emb = tf.keras.layers.Embedding(num_tokens, dim)
@@ -62,8 +66,9 @@ class FastTransformer(tf.keras.Model):
         self.fast_tranformer_layers = []
 
         for _ in range(depth):
-            attn = FastAttention(dim, dim_head = dim_head, heads = heads, pos_emb = layer_pos_emb, max_seq_len = max_seq_len, mask = self.mask)
-            ff = FeedForward(dim, mult = ff_mult)
+            attn = FastAttention(dim, dim_head=dim_head, heads=heads, pos_emb=layer_pos_emb, max_seq_len=max_seq_len,
+                                 mask=self.mask)
+            ff = FeedForward(dim, mult=ff_mult)
 
             self.fast_tranformer_layers.append(PreNorm(dim, attn))
             self.fast_tranformer_layers.append(PreNorm(dim, ff))
@@ -74,8 +79,21 @@ class FastTransformer(tf.keras.Model):
             block.fn.to_k_attn_logits = first_block.fn.to_k_attn_logits
 
         self.to_logits = tf.keras.Sequential([
-            tf.keras.layers.LayerNormalization(axis = -1),
-            tf.keras.layers.Dense(num_tokens, input_dim = dim)
+            tf.keras.layers.LayerNormalization(axis=-1),
+            tf.keras.layers.Dense(num_tokens, input_dim=dim)
         ])
 
     def call(self, x, **kwargs):
+        n = x.shape[1]
+        x = self.token_emb(x)
+
+        if self.abs_pos_emb is not None:
+            pos_emb = self.abs_pos_emb(tf.range(n))
+            x = x + rearrange(pos_emb, 'n d -> () n d')
+
+        layer_number = 0
+        for current_layer in self.fast_tranformer_layers:
+            x = current_layer(x) + x
+            layer_number += 1
+
+        return self.to_logits(x)
