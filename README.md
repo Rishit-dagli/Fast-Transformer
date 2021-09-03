@@ -5,6 +5,7 @@
 [![Upload Python Package](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/python-publish.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5406025.svg)](https://doi.org/10.5281/zenodo.5406025)
 ![GitHub License](https://img.shields.io/github/license/Rishit-dagli/Fast-Transformer)
 [![GitHub stars](https://img.shields.io/github/stars/Rishit-dagli/Fast-Transformer?style=social)](https://github.com/Rishit-dagli/Fast-Transformer/stargazers)
 [![GitHub followers](https://img.shields.io/github/followers/Rishit-dagli?label=Follow&style=social)](https://github.com/Rishit-dagli)
