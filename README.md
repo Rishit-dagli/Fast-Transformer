@@ -78,6 +78,8 @@ Have any questions, doubts or want to present your opinions, views? You're alway
 }
 ```
 
+[Yannic Kilcher's video](https://youtu.be/qgUegkefocg) was super helpful while building this.
+
 ## License
 
 ```
