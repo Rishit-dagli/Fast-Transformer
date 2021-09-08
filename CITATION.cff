@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Dagli"
+  given-names: "Rishit"
+  orcid: "https://orcid.org/0000-0002-7622-3222"
+title: "Fast-Transformer"
+version: 0.1.0
+doi: 10.5281/zenodo.5406024
+date-released: 2021-09-03
+url: "https://github.com/Rishit-dagli/Fast-Transformer"
