@@ -4,6 +4,7 @@
 [![Lint Code Base](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/linter.yml/badge.svg)](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/linter.yml)
 [![Upload Python Package](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/python-publish.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Rishit-dagli/Fast-Transformer/blob/main/example/fast-transformer-example.ipynb)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5406025.svg)](https://doi.org/10.5281/zenodo.5406025)
 ![GitHub License](https://img.shields.io/github/license/Rishit-dagli/Fast-Transformer)
