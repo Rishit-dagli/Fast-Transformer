@@ -26,7 +26,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
+        pip install build tensorflow einops rotary-embedding-tensorflow
+    - name: Run Tests
+      run: |
+        python -m fast_transformer.test_fast_transformer
     - name: Build package
       run: python -m build
     - name: Publish package
