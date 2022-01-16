@@ -1,7 +1,7 @@
 # Fast Transformer [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FRishit-dagli%2FFast-Transformer)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2FRishit-dagli%2FFast-Transformer)
 
 ![PyPI](https://img.shields.io/pypi/v/fast-transformer)
-[![Lint Code Base](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/linter.yml/badge.svg)](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/linter.yml)
+[![Run Tests](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/tests.yml/badge.svg)](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/tests.yml)
 [![Upload Python Package](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Rishit-dagli/Fast-Transformer/actions/workflows/python-publish.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Rishit-dagli/Fast-Transformer/blob/main/example/fast-transformer-example.ipynb)
