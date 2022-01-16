@@ -22,11 +22,14 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.9'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
+        pip install build tensorflow==2.7.0 einops rotary-embedding-tensorflow
+    - name: Run Tests
+      run: |
+        python -m fast_transformer.test_fast_transformer
     - name: Build package
       run: python -m build
     - name: Publish package

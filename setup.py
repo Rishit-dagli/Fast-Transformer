@@ -52,7 +52,7 @@ setup(
     author="Rishit Dagli",
     author_email="rishit.dagli@gmail.com",
     install_requires=[
-        "tensorflow ~= 2.5.0",
+        "tensorflow >= 2.5.0",
         "einops ~= 0.3.0",
         "rotary-embedding-tensorflow ~= 0.1.0",
     ],
