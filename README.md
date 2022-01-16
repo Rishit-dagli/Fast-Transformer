@@ -39,10 +39,11 @@ cd fast-transformer
 pip install -e .[dev]
 ```
 
-To run rank and shape tests run the following:
+To run rank and shape tests run any of the following:
 
 ```py
 python -m fast_transformer.test_fast_transformer
+pytest fast_transformer --verbose
 ```
 
 ## Usage
