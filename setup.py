@@ -62,6 +62,7 @@ setup(
             "twine",
             "numpy",
             "black",
+            "pytest",
         ],
     },
 )
