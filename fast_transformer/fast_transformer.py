@@ -24,7 +24,7 @@ class FeedForward(tf.keras.layers.Layer):
 
         self.net = tf.keras.Sequential(
             [
-                tf.keras.layers.Dense(dim * mult, input_dim=dim),
+                tf.keras.layers.Dense(dim * mult),
                 tf.keras.layers.Activation(tf.nn.gelu),
                 tf.keras.layers.Dense(dim, input_dim=dim * mult),
             ]
