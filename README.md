@@ -21,10 +21,20 @@ meanwhile achieve comparable or even better long text modeling performance.
 
 ## Installation
 
+### PyPI
+
 Run the following to install:
 
 ```sh
 pip install fast-transformer
+```
+
+### Docker
+
+To install the package using Docker run the following:
+
+```sh
+docker pull ghcr.io/rishit-dagli/fast-transformer:0.2.0
 ```
 
 ## Developing fast-transformer
@@ -64,6 +74,20 @@ model = FastTransformer(
 x = tf.experimental.numpy.random.randint(0, 20000, (1, 4096))
 
 logits = model(x) # (1, 4096, 20000)
+```
+
+## Run with Docker
+
+You can also run the example script with Docker.
+
+```sh
+git clone https://github.com/Rishit-dagli/Fast-Transformer.git
+cd Fast-Transformer
+
+docker run -it --rm \
+    --mount type=bind,source="$(pwd)"/example,target=/usr/src/fast-transformer/docker_example \
+    ghcr.io/rishit-dagli/fast-transformer:0.2.0 \
+    python docker_example/docker_example.py
 ```
 
 ## Want to Contribute 🙋‍♂️?
